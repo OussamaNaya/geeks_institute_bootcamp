@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 🌟 Exercise 1 : HTML Form -->
+     <!-- <form action="" method="get">
+        <input type="text" placeholder="Full Name ..">
+        <input type="textarea" placeholder="Your Diploms ..">
+        <input type="submit" value="Send">
+     </form> -->
+
+     <!-- 🌟 Exercise 2 : HTML Form #2 -->
+     <!-- <form action="" method="post">
+        <input type="text" placeholder="Full Name ..">
+        <input type="textarea" placeholder="Your Diploms ..">
+        <input type="submit" value="Send">
+     </form> -->
+
+     <!-- 🌟 Exercise 3 : JSON Mario -->
+      <div id="marioObjt"></div>
+     
+
+
+     <script>
+        let div = document.getElementById("marioObjt");
+        const marioGame = {
+            detail : "An amazing game!",
+            characters : {
+                mario : {
+                    description:"Small and jumpy. Likes princesses.",
+                    height: 10,
+                    weight: 3,
+                    speed: 12,
+                },
+                bowser : {
+                    description: "Big and green, Hates princesses.",
+                    height: 16,
+                    weight: 6,
+                    speed: 4,
+                },
+                princessPeach : {
+                    description: "Beautiful princess.",
+                    height: 12,
+                    weight: 2,
+                    speed: 2,
+                }
+            },
+        }
+
+        div.innerText = marioGame;
+
+        setTimeout(() => {
+            const marioGameJson = JSON.stringify(marioGame);
+            console.log(marioGameJson); 
+            div.innerText = marioGameJson;           
+        }, 5000);
+
+
+
+     </script>
+    </body>
+</html>
