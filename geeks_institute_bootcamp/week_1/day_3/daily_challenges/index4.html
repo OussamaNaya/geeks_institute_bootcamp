@@ -1,0 +1,53 @@
+ <body>
+      <label>ON CHANGE</label>
+      <input type="text" id="input1" />
+       <span
+        id="result1"
+        style="border: 1px solid blue; padding: 2px 8px; margin-left: 10px"
+      ></span>
+
+      <br /><br />
+
+      <label>ON INPUT</label>
+      <input type="text" id="input2" />
+      <span
+        id="result2"
+        style="border: 1px solid red; padding: 2px 8px; margin-left: 10px"
+      ></span>
+
+     <script>
+        //On Change : event triggers when the element <u>has finished changing</u>.
+
+        let newInput1 = document.getElementById("input1");
+
+        newInput1.addEventListener("change", changeInput);
+
+        function changeInput(event) {
+          document.getElementById("result1").textContent = event.target.value;
+        }
+
+        // OTHER POSSIBILITY
+        // let newInput1 =  document.getElementById('input1')
+        //   newInput1.onchange = function() {
+        //   document.getElementById('result1').innerHTML = this.value;
+        //   };
+
+        // --------------------------------
+
+        //On Input : event triggers every time after a value is modified by the user.
+
+        let newInput2 = document.getElementById("input2");
+        newInput2.addEventListener("input", changeInput2);
+
+        function changeInput2(event) {
+          document.getElementById("result2").textContent = event.target.value;
+        }
+
+        //OTHER POSSIBILITY
+
+        // let newInput2 =  document.getElementById('input2')
+        //   newInput2.oninput = function() {
+        //    document.getElementById('result2').innerHTML = this.value;
+        // };
+      </script>
+    </body>

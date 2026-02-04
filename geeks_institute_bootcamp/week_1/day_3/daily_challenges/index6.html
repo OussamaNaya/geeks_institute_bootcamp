@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Banner</title>
+  <style>
+    #banner {
+      display: none; /* caché au début */
+      background-color: orange;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to our shop</h1>
+
+  <div id="banner">The sales end in 10min !</div>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("banner").style.display = "block";
+    }, 5000); // 5 seconds
+  </script>
+
+</body>
+</html>

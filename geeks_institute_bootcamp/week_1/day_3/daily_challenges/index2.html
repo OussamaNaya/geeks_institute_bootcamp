@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Button Events</title>
+  <style>
+    #jsstyle {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<button id="jsstyle">Style</button>
+
+<script>
+  const btn = document.getElementById("jsstyle");
+
+  // onload
+  window.addEventListener("load", () => {
+    btn.style.backgroundColor = "lightblue";
+    btn.style.color = "black";
+  });
+
+  // onclick
+  btn.addEventListener("click", () => {
+    btn.style.backgroundColor = "green";
+    btn.style.color = "white";
+    btn.style.fontSize = "20px";
+  });
+
+  // onmouseover
+  btn.addEventListener("mouseover", () => {
+    btn.style.backgroundColor = "orange";
+  });
+
+  // onmouseout
+  btn.addEventListener("mouseout", () => {
+    btn.style.backgroundColor = "lightblue";
+  });
+
+  // onunload
+  window.addEventListener("beforeunload", () => {
+    console.log("User is leaving the page...");
+  });
+</script>
+
+</body>
+</html>
