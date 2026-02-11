@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Drum Kit</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://devtlv.github.io/drumset/images/nainoa-shizuru-NcdG9mK3PBY-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Fallback dark background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            z-index: -1;
+        }
+
+        .drums-container {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .key {
+            width: 100px;
+            height: 100px;
+            border: 4px solid #ffc600;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            box-shadow: 0 0 20px rgba(255, 198, 0, 0.4);
+        }
+
+        .key:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 198, 0, 0.8);
+        }
+
+        .key.playing {
+            transform: scale(1.15);
+            border-color: #fff;
+            box-shadow: 0 0 40px rgba(255, 198, 0, 1);
+            background-color: rgba(255, 198, 0, 0.3);
+        }
+
+        .letter {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .sound-name {
+            font-size: 12px;
+            color: #ffc600;
+            font-weight: 600;
+        }
+
+        .title {
+            position: absolute;
+            top: 30px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            letter-spacing: 5px;
+        }
+
+        .instructions {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        @media (max-width: 768px) {
+            .key {
+                width: 80px;
+                height: 80px;
+            }
+
+            .letter {
+                font-size: 30px;
+            }
+
+            .sound-name {
+                font-size: 10px;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">🥁 DRUM KIT 🥁</h1>
+
+    <div class="drums-container">
+        <div class="key" data-key="65">
+            <div class="letter">A</div>
+            <div class="sound-name">Boom</div>
+        </div>
+        <div class="key" data-key="83">
+            <div class="letter">S</div>
+            <div class="sound-name">Clap</div>
+        </div>
+        <div class="key" data-key="68">
+            <div class="letter">D</div>
+            <div class="sound-name">HiHat</div>
+        </div>
+        <div class="key" data-key="70">
+            <div class="letter">F</div>
+            <div class="sound-name">Kick</div>
+        </div>
+        <div class="key" data-key="71">
+            <div class="letter">G</div>
+            <div class="sound-name">OpenHat</div>
+        </div>
+        <div class="key" data-key="72">
+            <div class="letter">H</div>
+            <div class="sound-name">Ride</div>
+        </div>
+        <div class="key" data-key="74">
+            <div class="letter">J</div>
+            <div class="sound-name">Snare</div>
+        </div>
+        <div class="key" data-key="75">
+            <div class="letter">K</div>
+            <div class="sound-name">Tink</div>
+        </div>
+        <div class="key" data-key="76">
+            <div class="letter">L</div>
+            <div class="sound-name">Tom</div>
+        </div>
+    </div>
+
+    <div class="instructions">
+        Press the keys or click on the pads to play sounds!
+    </div>
+
+    <!-- Audio Elements -->
+    <audio data-key="65" src="sounds/boom.wav"></audio>
+    <audio data-key="83" src="sounds/clap.wav"></audio>
+    <audio data-key="68" src="sounds/hihat.wav"></audio>
+    <audio data-key="70" src="sounds/kick.wav"></audio>
+    <audio data-key="71" src="sounds/openhat.wav"></audio>
+    <audio data-key="72" src="sounds/ride.wav"></audio>
+    <audio data-key="74" src="sounds/snare.wav"></audio>
+    <audio data-key="75" src="sounds/tink.wav"></audio>
+    <audio data-key="76" src="sounds/tom.wav"></audio>
+
+    <script>
+        // Function to play sound
+        function playSound(e) {
+            // Get the keyCode - either from keyboard event or from clicked element
+            let keyCode;
+            
+            if (e.type === 'keydown') {
+                keyCode = e.keyCode;
+            } else if (e.type === 'click') {
+                keyCode = this.getAttribute('data-key');
+            }
+
+            // Find the audio element with matching data-key
+            const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${keyCode}"]`);
+
+            // If no audio element found, exit
+            if (!audio) return;
+
+            // Add the 'playing' class for visual feedback
+            if (key) {
+                key.classList.add('playing');
+            }
+
+            // Rewind the audio to the start and play
+            audio.currentTime = 0;
+            audio.play();
+        }
+
+        // Function to remove the 'playing' class after animation
+        function removeTransition(e) {
+            // Only run when the transform transition ends
+            if (e.propertyName !== 'transform') return;
+            
+            this.classList.remove('playing');
+        }
+
+        // Get all drum keys
+        const keys = document.querySelectorAll('.key');
+
+        // Add event listener for keyboard presses
+        window.addEventListener('keydown', playSound);
+
+        // Add event listener for mouse clicks on each key
+        keys.forEach(key => {
+            key.addEventListener('click', playSound);
+            key.addEventListener('transitionend', removeTransition);
+        });
+
+        // Alternative method to remove 'playing' class after a set time
+        // This ensures the class is removed even if transitionend doesn't fire
+        function removePlayingClass() {
+            keys.forEach(key => {
+                if (key.classList.contains('playing')) {
+                    setTimeout(() => {
+                        key.classList.remove('playing');
+                    }, 100);
+                }
+            });
+        }
+
+        // Run the cleanup function periodically
+        setInterval(removePlayingClass, 100);
+
+        // Log instructions to console
+        console.log('🥁 Drum Kit Ready!');
+        console.log('Press keys A, S, D, F, G, H, J, K, L to play sounds');
+        console.log('Or click on the drum pads with your mouse');
+    </script>
+</body>
+</html>
