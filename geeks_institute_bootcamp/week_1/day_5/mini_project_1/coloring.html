@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coloring Squares</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .clear-button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #e0e0e0;
+            border: 2px solid #999;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clear-button:hover {
+            background-color: #d0d0d0;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .clear-button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 5px;
+        }
+
+        .color-box {
+            width: 100px;
+            height: 80px;
+            border: 3px solid #333;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .color-box.selected {
+            border: 5px solid #000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .canvas {
+            display: grid;
+            grid-template-columns: repeat(50, 15px);
+            grid-template-rows: repeat(50, 15px);
+            gap: 1px;
+            background-color: #ddd;
+            padding: 2px;
+            border: 2px solid #999;
+        }
+
+        .pixel {
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            cursor: crosshair;
+        }
+
+        .pixel:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <button id="clearBtn" class="clear-button">Clear</button>
+            <div id="colorPalette" class="color-palette"></div>
+        </div>
+        <div id="canvas" class="canvas"></div>
+    </div>
+    
+    <script>
+        // Color palette array matching the image
+        const colors = [
+            '#FF0000', // Red
+            '#FF4500', // Orange Red
+            '#DAA520', // Goldenrod
+            '#FFFF00', // Yellow
+            '#9ACD32', // Yellow Green
+            '#90EE90', // Light Green
+            '#008000', // Green
+            '#40E0D0', // Turquoise
+            '#00FFFF', // Cyan
+            '#87CEEB', // Sky Blue
+            '#0000FF', // Blue
+            '#00008B', // Dark Blue
+            '#000080', // Navy
+            '#4B0082', // Indigo
+            '#800080', // Purple
+            '#FF00FF', // Magenta
+            '#FFB6C1', // Light Pink
+            '#FFC0CB', // Pink
+            '#808080', // Gray
+            '#696969', // Dim Gray
+            '#000000', // Black
+            '#FFFFFF'  // White
+        ];
+
+        // State variables
+        let selectedColor = '#FF0000'; // Default to red
+        let isDrawing = false;
+
+        // Initialize the color palette
+        function createColorPalette() {
+            const palette = document.getElementById('colorPalette');
+            
+            colors.forEach((color, index) => {
+                const colorBox = document.createElement('div');
+                colorBox.className = 'color-box';
+                colorBox.style.backgroundColor = color;
+                
+                // Select the first color by default
+                if (index === 0) {
+                    colorBox.classList.add('selected');
+                }
+                
+                // Add click event to select color
+                colorBox.addEventListener('click', () => {
+                    // Remove selected class from all color boxes
+                    document.querySelectorAll('.color-box').forEach(box => {
+                        box.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked color box
+                    colorBox.classList.add('selected');
+                    
+                    // Update selected color
+                    selectedColor = color;
+                });
+                
+                palette.appendChild(colorBox);
+            });
+        }
+
+        // Initialize the canvas grid
+        function createCanvas() {
+            const canvas = document.getElementById('canvas');
+            const gridSize = 50; // 50x50 grid
+            
+            for (let i = 0; i < gridSize * gridSize; i++) {
+                const pixel = document.createElement('div');
+                pixel.className = 'pixel';
+                
+                // Mouse events for drawing
+                pixel.addEventListener('mousedown', () => {
+                    isDrawing = true;
+                    pixel.style.backgroundColor = selectedColor;
+                });
+                
+                pixel.addEventListener('mouseover', () => {
+                    if (isDrawing) {
+                        pixel.style.backgroundColor = selectedColor;
+                    }
+                });
+                
+                pixel.addEventListener('mouseup', () => {
+                    isDrawing = false;
+                });
+                
+                canvas.appendChild(pixel);
+            }
+        }
+
+        // Clear button functionality
+        function setupClearButton() {
+            const clearBtn = document.getElementById('clearBtn');
+            
+            clearBtn.addEventListener('click', () => {
+                const pixels = document.querySelectorAll('.pixel');
+                pixels.forEach(pixel => {
+                    pixel.style.backgroundColor = 'white';
+                });
+            });
+        }
+
+        // Global mouse up event to stop drawing when mouse is released anywhere
+        document.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+
+        // Prevent default drag behavior
+        document.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+        });
+
+        // Initialize the game
+        function init() {
+            createColorPalette();
+            createCanvas();
+            setupClearButton();
+        }
+
+        // Start the game when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
