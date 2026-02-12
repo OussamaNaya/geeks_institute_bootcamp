@@ -1,9 +1,7 @@
-// ===== Exercise 1
+// Exercise 1 : Merge Words
 
-// ===== Exercise 2
+const mergeWords = (string) => (nextString) => {
+    return  nextString === undefined ? string : mergeWords(string + ' ' + nextString);
+}
 
-// ===== Exercise 3
-
-// ===== Exercise 4
-
-// ===== Exercise ...
+console.log(mergeWords('There')('is')('no')('spoon.')());
