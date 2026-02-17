@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #0ccac4;
+  background-image: url('C:\\Users\\LENOVO\\Documents\\Geeks\\geeks_institute_bootcamp\\geeks_institute_bootcamp\\week_2\\day_5\\mini_project_Robo-Friends Search\\card-pattern.png');
+  text-align: center;
+}
+
+h1 {
+  color: #fff;
+}
+
+#searchBox {
+  padding: 10px;
+  width: 300px;
+  margin: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+}
+
+#robot-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  background: #95dada;
+  width: 200px;
+  margin: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 150px;
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+}
