@@ -1,9 +1,30 @@
-// ===== Exercise 1
+// ===== Exercise 1 : Promise.all()
+// const promise1 = Promise.resolve(3);
+// const promise2 = 42; // not a promise, but Promise.all treats it as Promise.resolve(42)
+// const promise3 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 3000, 'foo');
+// });
 
-// ===== Exercise 2
+// Promise.all([promise1, promise2, promise3])
+//   .then((values) => {
+//     console.log(values); // expected output: [3, 42, "foo"]
+//   })
+//   .catch((error) => {
+//     console.error("One of the promises failed:", error);
+//   });
 
-// ===== Exercise 3
 
-// ===== Exercise 4
+// // ===== Exercise 2 : Analyse Promise.all()
+// function timesTwoAsync(x) {
+//   return new Promise(resolve => resolve(x * 2));
+// }
 
-// ===== Exercise ...
+// const arr = [1, 2, 3];
+// const promiseArr = arr.map(timesTwoAsync);
+
+// Promise.all(promiseArr)
+//   .then(result => {
+//     console.log(result);
+//   });
+
+// // Output => [ 2, 4, 6 ]
