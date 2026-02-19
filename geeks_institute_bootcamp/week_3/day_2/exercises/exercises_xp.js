@@ -27,7 +27,24 @@
 
 
    // ===== Exercise 2 : Giphy API
+const API_KEY = "hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My"; // Remplace par ta clé API
 
+const url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=sun&limit=10&offset=2`;
+
+fetch(url)
+   .then((response) => {
+      if (response.ok) {
+         return response.json();
+      } else {
+         throw new Error(`HTTP Error: ${response.status}`);
+      }
+   })
+   .then((obj) => {
+      console.log(obj);
+   })
+   .catch((error) => {
+      console.log(`catch: ${error}`);
+   });
 
 
    // ===== Exercise 3
