@@ -27,36 +27,44 @@
 
 
    // ===== Exercise 2 : Giphy API
-const API_KEY = "hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My"; // Remplace par ta clé API
+// const API_KEY = "hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My"; // Remplace par ta clé API
 
-const url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=sun&limit=10&offset=2`;
+// const url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=sun&limit=10&offset=2`;
 
-fetch(url)
-   .then((response) => {
-      if (response.ok) {
-         return response.json();
-      } else {
-         throw new Error(`HTTP Error: ${response.status}`);
+// fetch(url)
+//    .then((response) => {
+//       if (response.ok) {
+//          return response.json();
+//       } else {
+//          throw new Error(`HTTP Error: ${response.status}`);
+//       }
+//    })
+//    .then((obj) => {
+//       console.log(obj);
+//    })
+//    .catch((error) => {
+//       console.log(`catch: ${error}`);
+//    });
+
+
+   // ===== Exercise 3 : Async function
+async function fetchSwapi()
+{
+   try {
+      console.log("fetchSwapi Starting ...")
+
+      const swapi = await fetch("https://www.swapi.tech/api/starships/9/");
+      if(swapi.ok)
+      {
+         let ObjJson = await swapi.json();
+         console.log(ObjJson.result);
       }
-   })
-   .then((obj) => {
-      console.log(obj);
-   })
-   .catch((error) => {
-      console.log(`catch: ${error}`);
-   });
+      else{
+         throw new Error(`HTTP Error: ${swapi.status}`);
+      }
+   } catch (error) {
+         console.log("catch: ", error);
+   }
+}
 
-
-   // ===== Exercise 3
-// Promise qui se résout avec la valeur 3
-// let promiseResolve = Promise.resolve(3);
-
-// promiseResolve
-//   .then(result => console.log(result));
-
-
-// // Promise qui se rejette avec "Boo!"
-// let promiseReject = Promise.reject("Boo!");
-
-// promiseReject
-//   .catch(error => console.log(error));
+fetchSwapi();
