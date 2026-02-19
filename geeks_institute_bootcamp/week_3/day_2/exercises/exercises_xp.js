@@ -48,23 +48,42 @@
 
 
    // ===== Exercise 3 : Async function
-async function fetchSwapi()
-{
-   try {
-      console.log("fetchSwapi Starting ...")
+// async function fetchSwapi()
+// {
+//    try {
+//       console.log("fetchSwapi Starting ...")
 
-      const swapi = await fetch("https://www.swapi.tech/api/starships/9/");
-      if(swapi.ok)
-      {
-         let ObjJson = await swapi.json();
-         console.log(ObjJson.result);
-      }
-      else{
-         throw new Error(`HTTP Error: ${swapi.status}`);
-      }
-   } catch (error) {
-         console.log("catch: ", error);
-   }
+//       const swapi = await fetch("https://www.swapi.tech/api/starships/9/");
+//       if(swapi.ok)
+//       {
+//          let ObjJson = await swapi.json();
+//          console.log(ObjJson.result);
+//       }
+//       else{
+//          throw new Error(`HTTP Error: ${swapi.status}`);
+//       }
+//    } catch (error) {
+//          console.log("catch: ", error);
+//    }
+// }
+
+// fetchSwapi();
+
+
+// ===== Exercise 4 : Analyze
+function resolveAfter2Seconds() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve('resolved');
+        }, 2000);
+    });
 }
 
-fetchSwapi();
+async function asyncCall() {
+    console.log('calling');
+    let result = await resolveAfter2Seconds();
+    console.log(result);
+}
+
+asyncCall();
+// Output => "resolved"
