@@ -1,50 +1,45 @@
-// ===== Exercise 1
-// function compareToTen(num){
-//     return new Promise((resolve, reject) => {
-//         if(num >= 10)
-//         {
-//             resolve("Number is greater than 10");
-//         }
-//         else
-//         {
-//             reject("Number is less than 10");
-//         }
-//     });
-// }
+// ===== Exercise 1 : Giphy API
+// const url = "https://api.giphy.com/v1/gifs/search?q=hilarious&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My";
 
-// compareToTen(15)
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error))
-//    .finally( console.log("By by !"))
+// fetch(url)
+//    .then((result) => {
+//       if(result.ok) {
+//          return result.json()
+//       } else {
+//          throw new Error("Wrong artwork");
+//       }
+//    })
+//    .then((obj) => {
+//       // const gifs = obj.data; // the array of 25 items
+      
+//       // gifs.forEach((gif) => {
+//       //    console.log({
+//       //       type: gif.type,
+//       //       id:   gif.id,
+//       //       url:  gif.url,
+//       //       slug: gif.slug
+//       //    });
+//       // });
+//       console.log(obj);
+//    })
+//    .catch((error) => console.log(`catch: ${error}`));
 
-// compareToTen(8)
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error))
 
 
+   // ===== Exercise 2 : Giphy API
 
-   // ===== Exercise 2
-// function success() {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       resolve("success");
-//     }, 4000);
-//   });
-// }
-
-// success().then(result => console.log(result));
 
 
    // ===== Exercise 3
 // Promise qui se résout avec la valeur 3
-let promiseResolve = Promise.resolve(3);
+// let promiseResolve = Promise.resolve(3);
 
-promiseResolve
-  .then(result => console.log(result));
+// promiseResolve
+//   .then(result => console.log(result));
 
 
-// Promise qui se rejette avec "Boo!"
-let promiseReject = Promise.reject("Boo!");
+// // Promise qui se rejette avec "Boo!"
+// let promiseReject = Promise.reject("Boo!");
 
-promiseReject
-  .catch(error => console.log(error));
+// promiseReject
+//   .catch(error => console.log(error));
