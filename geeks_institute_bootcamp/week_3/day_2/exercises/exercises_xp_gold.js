@@ -115,25 +115,29 @@
 const urls = [
         "https://jsonplaceholder.typicode.com/users",
         "https://jsonplaceholder.typicode.com/posts",
-        "https://jsonplaceholder.typicode.com/albums"
+        "https://jsonplaceholder.typicode.com/albumsmmm"
       ];
 
 const getData = async function() {
-  const [ users, posts, albums ] = await Promise.all(urls.map(async url => {
-        let resp = await fetch(url);
-        if(resp.ok)
-        {
-            return await resp.json();
-        }
-        else
-        {
-            throw new Error("Error in the resp.")
-        }
-    })
-  );
-  console.log('users', users);
-  console.log('posta', posts);
-  console.log('albums', albums);
+    try {
+        const [ users, posts, albums ] = await Promise.all(urls.map(async url => {
+                let resp = await fetch(url);
+                if(resp.ok)
+                {
+                    return await resp.json();
+                }
+                else
+                {
+                    throw new Error("Error in the resp.")
+                }
+            })
+        );
+        console.log('users', users);
+        console.log('posta', posts);
+        console.log('albums', albums);
+    } catch (error) {
+     console.log("Oooops !");   
+    }
 }
 
 getData()
