@@ -111,6 +111,32 @@
 // setTimeout(concurrentStart, 4000)
 
 
-// // ===== Exercise 4
+// // ===== Exercise 4 : Modify fetch with Async/Await
+const urls = [
+        "https://jsonplaceholder.typicode.com/users",
+        "https://jsonplaceholder.typicode.com/posts",
+        "https://jsonplaceholder.typicode.com/albums"
+      ];
+
+const getData = async function() {
+  const [ users, posts, albums ] = await Promise.all(urls.map(async url => {
+        let resp = await fetch(url);
+        if(resp.ok)
+        {
+            return await resp.json();
+        }
+        else
+        {
+            throw new Error("Error in the resp.")
+        }
+    })
+  );
+  console.log('users', users);
+  console.log('posta', posts);
+  console.log('albums', albums);
+}
+
+getData()
+
 
 // // ===== Exercise ...
