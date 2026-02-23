@@ -20,11 +20,12 @@ fetch(`${API_Griphy}?q=sun&limit=1&offset=1&api_key=${API_key}`)
         console.log(obj);
 
         let objGif = document.createElement("div");
-
         objGif.textContent  = obj;
+
         const firstGif = obj.data[0];
         console.log(`firstGif: `);
         console.log(firstGif);
+        console.log("URL:", firstGif.images.fixed_height.url);
 
         gifImg.id = firstGif.id;
         gifImg.src = firstGif.images.fixed_height.url;
