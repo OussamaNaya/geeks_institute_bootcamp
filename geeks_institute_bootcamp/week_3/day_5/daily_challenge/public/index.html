@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emoji Guessing Game</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <div>
+          <h1>Emoji Guessing Game</h1>
+          <p class="sub">Guess the emoji name. Earn 1 point per correct answer.</p>
+        </div>
+        <div class="scorebox">
+          <div class="label">Score</div>
+          <div id="score" class="score">0</div>
+        </div>
+      </header>
+
+      <section class="card">
+        <div class="row">
+          <label class="field">
+            <span class="label">Player name</span>
+            <input id="playerName" type="text" maxlength="20" placeholder="Type your name" />
+          </label>
+          <button id="saveNameBtn" class="btn" type="button">Save</button>
+        </div>
+        <p id="nameStatus" class="hint"></p>
+      </section>
+
+      <section class="card">
+        <div class="emoji" id="emoji">❓</div>
+
+        <form id="guessForm">
+          <div id="options" class="options"></div>
+          <button class="btn primary" type="submit">Submit guess</button>
+        </form>
+
+        <p id="feedback" class="feedback"></p>
+        <div class="row">
+          <button id="nextBtn" class="btn" type="button">Next emoji</button>
+          <button id="refreshLeaderboardBtn" class="btn" type="button">Refresh leaderboard</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Leaderboard (top 10)</h2>
+        <ol id="leaderboard" class="leaderboard"></ol>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
+
