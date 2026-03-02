@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Node.js Quiz Game</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <h1>Node.js & Express Quiz</h1>
+        <div class="score-box">
+          <span>Score</span>
+          <strong id="score">0</strong>
+        </div>
+      </header>
+
+      <section class="card" id="quizCard">
+        <div id="questionText" class="question">Loading question...</div>
+
+        <form id="answersForm" class="answers"></form>
+
+        <button id="submitBtn" class="btn primary" type="button">Submit answer</button>
+
+        <p id="feedback" class="feedback"></p>
+      </section>
+
+      <section class="card hidden" id="resultCard">
+        <h2>Quiz finished!</h2>
+        <p id="finalScore"></p>
+        <button id="restartBtn" class="btn" type="button">Restart quiz</button>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+  </html>
+
