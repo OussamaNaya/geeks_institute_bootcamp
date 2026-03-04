@@ -1,39 +1,31 @@
 // ===== Exercise 1
-// function compareToTen(num){
-//     return new Promise((resolve, reject) => {
-//         if(num >= 10)
-//         {
-//             resolve("Number is greater than 10");
-//         }
-//         else
-//         {
-//             reject("Number is less than 10");
-//         }
-//     });
-// }
+// db.users.insertOne({
+//   name: "Yasmine",
+//   email: "yasmine@tech.ma",
+//   address: {
+//     city: "Casablanca",
+//     country: "Morocco",
+//     postalCode: "20000"
+//   }
+// })
 
-// compareToTen(15)
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error))
-//    .finally( console.log("By by !"))
 
-// compareToTen(8)
-//   .then(result => console.log(result))
-//   .catch(error => console.log(error))
+// db.users.find()
+
 
 
 
    // ===== Exercise 2
-// function success() {
-//   return new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//       resolve("success");
-//     }, 4000);
-//   });
-// }
+// Replace 'PASTE_ID_HERE' with the actual ObjectId from your users collection
+// db.orders.insertOne({
+//   orderNumber: "ORD-99X",
+//   total: 1500,
+//   currency: "MAD",
+//   status: "Processing",
+//   userId: ObjectId("PASTE_ID_HERE") 
+// })
 
-// success().then(result => console.log(result));
-
+// db.orders.find()
 
    // ===== Exercise 3
 // Promise qui se résout avec la valeur 3
