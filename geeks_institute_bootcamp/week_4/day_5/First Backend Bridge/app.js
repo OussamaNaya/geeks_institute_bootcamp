@@ -28,6 +28,21 @@ const studentSchema = new mongoose.Schema({
 
 const Student = mongoose.model('Student', studentSchema);
 
+const testStudent = async () => {
+  try {
+    const student = new Student({
+      name: "Omar",
+      email: "omar@school.com",
+      age: 16 // This should trigger an error!
+    });
+    await student.save();
+  } catch (error) {
+    console.log("Validation Error Caught:", error.message);
+  }
+};
+
+testStudent();
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
