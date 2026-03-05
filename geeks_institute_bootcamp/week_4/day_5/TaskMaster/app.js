@@ -1,7 +1,10 @@
 const express = require("express");
-const task = require("./models/task.model");
+const Task = require("./models/task.model");
+const connect = require("./db/dbConnection");
 
 const app = express();
+connect();
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
