@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="myForm">
+        <input type="text" name="first_name" placeholder="first name">
+        <input type="text" name="last_name" placeholder="lst name">
+        <input type="submit" name="submit" value="Send">
+    </form>
+
+    <div id="usersSection"></div>
+
+    <script>
+        let myForm = document.forms.myForm;
+        let inputFirstName = myForm.elements.first_name;
+        let inputlastName = myForm.elements.first_name;
+        let submitClick = myForm.elements.submit;
+        let usersSection = document.getElementById("usersSection");
+        
+        // console.log("myForm => ", myForm);
+        // console.log("inputFirstName => ", inputFirstName);
+        // console.log("inputlastName => ", inputlastName);
+        // console.log("submitClick => ", submitClick);
+
+        submitClick.addEventListener("click", () => {
+            event.preventDefault(); // stop page refresh 🚫
+
+            let firstName = inputFirstName.value;
+            let lastName = inputlastName.value;
+
+            let user = {
+                name : firstName,
+                lastname : lastName
+            }
+            console.log("user : ", user);
+
+            let newP = document.createElement("p");
+            newP.textContent = JSON.stringify(user);
+            usersSection.appendChild(newP);
+
+            inputFirstName.textContent = "";
+            inputlastName.textContent = "";            
+        })
+
+    </script>
+</body>
+</html>
