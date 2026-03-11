@@ -1,11 +1,12 @@
 import React from 'react';
+import './Exercise.css'
 
 class Exercise extends React.Component{
     render(){
         return(
             <>
                 <h1 style={style_header}>This is a Header</h1>
-                <p>This is a Paragraph</p> 
+                <p className='para'>This is a Paragraph</p> 
                 <a href="">This is a Link</a> 
 
                 <h3>This is a Form:</h3>  
