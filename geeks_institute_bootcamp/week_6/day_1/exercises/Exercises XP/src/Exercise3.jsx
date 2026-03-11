@@ -4,7 +4,7 @@ class Exercise extends React.Component{
     render(){
         return(
             <>
-                <h1 style={{color: 'red', backgroundColor: 'lightblue'}}>This is a Header</h1>
+                <h1 style={style_header}>This is a Header</h1>
                 <p>This is a Paragraph</p> 
                 <a href="">This is a Link</a> 
 
@@ -28,5 +28,13 @@ class Exercise extends React.Component{
         )
     }
 }
+
+const style_header = {
+  color: "white",
+  backgroundColor: "DodgerBlue",
+  padding: "10px",
+  fontFamily: "Arial"
+};
+
 
 export default Exercise;
