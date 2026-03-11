@@ -1,0 +1,32 @@
+import React from 'react';
+
+class Exercise extends React.Component{
+    render(){
+        return(
+            <>
+                <h1 style={{color: 'red', backgroundColor: 'lightblue'}}>This is a Header</h1>
+                <p>This is a Paragraph</p> 
+                <a href="">This is a Link</a> 
+
+                <h3>This is a Form:</h3>  
+                <label htmlFor="">Enter your name:</label> 
+                <div>
+                    <input type="text"/> 
+                    <button>Submit</button>
+                </div>  
+
+                <h5>Here is an Image</h5>   
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcR5U16C8yXgBpl7-Bc7Itjx3_LRl425zINA&s" alt="react logo" />
+
+                <ul>
+                    <h5>This is a List</h5>
+                    <li>Coffee</li>
+                    <li>Tea</li>
+                    <li>Milk</li>    
+                </ul> 
+            </>
+        )
+    }
+}
+
+export default Exercise;

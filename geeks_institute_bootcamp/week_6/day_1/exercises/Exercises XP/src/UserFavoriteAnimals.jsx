@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-class UserFavoriteAnimals extends Component {
+class UserFavoriteAnimals extends React.Component {
   render() {
     const animals = this.props.favAnimals;
 
