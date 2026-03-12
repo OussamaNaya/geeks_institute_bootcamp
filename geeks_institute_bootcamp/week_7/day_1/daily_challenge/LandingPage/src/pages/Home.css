@@ -1,0 +1,202 @@
+/* ── Reset & Base ── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  color: #222;
+}
+
+.app {
+  width: 100%;
+}
+
+/* ── Header ── */
+.site-header {
+  background-color: #e8512a;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.site-header h1 {
+  font-size: 3rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+}
+
+.site-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* ── Card Sections ── */
+.card-section {
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+.card-section.shaded {
+  background-color: #f5f5f5;
+}
+
+.card-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.card-icon {
+  flex-shrink: 0;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-icon .fa {
+  font-size: 5rem;
+  color: #e8512a;
+}
+
+.card-content h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.card-content p {
+  line-height: 1.7;
+  color: #333;
+}
+
+/* ── Contact Section ── */
+.contact-section {
+  background-color: #f5f5f5;
+  padding: 40px 20px;
+}
+
+.contact-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #f0f0f0;
+  border-radius: 4px;
+  padding: 40px 30px;
+}
+
+.contact-inner h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.contact-body {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.contact-info {
+  flex: 1;
+  line-height: 2;
+}
+
+.contact-info p {
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.contact-info .fa {
+  margin-right: 6px;
+  color: #333;
+}
+
+.contact-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-form p {
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 0.95rem;
+  background: #fff;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #e8512a;
+}
+
+.contact-form button {
+  background-color: #e8512a;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+
+.contact-form button:hover {
+  background-color: #cf4421;
+}
+
+/* ── Responsive: Tablet & Mobile ── */
+@media (max-width: 768px) {
+  .site-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .card-inner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .card-icon {
+    width: auto;
+  }
+
+  .contact-body {
+    flex-direction: column;
+  }
+
+  .contact-info,
+  .contact-form {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .card-icon .fa {
+    font-size: 4rem;
+  }
+
+  .contact-inner {
+    padding: 24px 16px;
+  }
+}
