@@ -1,7 +1,8 @@
 import './App.css'
 import Car from './components/Car'
 import Events from './components/Events';
-import Phone from './components/Phone'
+import Phone from './components/Phone';
+import Color from './components/Color'
 
 function App() {
   const carinfo = { name: "Ford", model: "Mustang" };
@@ -13,6 +14,7 @@ function App() {
       <Events />
 
       <Phone />
+      <Color />
     </>
   )
 }
