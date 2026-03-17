@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Garage from './Garage';
 
 function Car(props) {
     const { name, model } = props;
@@ -6,7 +7,8 @@ function Car(props) {
 
     return (
         <div>
-            <h3>This Car name it {name} and model it {color} {model}</h3>
+            <Garage size="small" />
+            <h5>This Car name it {name} and model it {color} {model}</h5>
         </div>
     );
 }
