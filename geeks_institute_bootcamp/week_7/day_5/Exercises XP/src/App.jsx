@@ -10,6 +10,7 @@ import PostList from './components/PostList'
 import Example1 from './components/Example1'
 import Example2 from './components/Example2'
 import Example3 from './components/Example3'
+import getData from './services/webHook'
 
 const Home = () => {
   return(
@@ -24,6 +25,12 @@ const Profile = () => {
 }
 const Shop = () => {
   return <>{undefinedVariable}</>;
+}
+
+const hundlCick = async () => {
+  const data = await getData();
+
+  console.log("Réponse du serveur :", data);
 }
 
 
@@ -76,7 +83,13 @@ function App() {
       <Example2 /> 
 
       <hr />
-      <Example3 />     
+      <Example3 />  
+
+
+      <div style={{ padding: "20px" }}>
+        <h1>Exercice 4: Post JSON Data</h1>
+        <button onClick={hundlCick}>Envoyer les données au webhook</button>
+      </div>   
     </>
   );
 }
