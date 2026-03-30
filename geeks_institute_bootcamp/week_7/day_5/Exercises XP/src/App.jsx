@@ -7,6 +7,9 @@ import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ErrorBoundary from './components/ErrorBoundary'
 import PostList from './components/PostList'
+import Example1 from './components/Example1'
+import Example2 from './components/Example2'
+import Example3 from './components/Example3'
 
 const Home = () => {
   return(
@@ -65,6 +68,15 @@ function App() {
 
       <hr />
       <PostList />
+
+      <hr />
+      <Example1 />    
+
+      <hr />
+      <Example2 /> 
+
+      <hr />
+      <Example3 />     
     </>
   );
 }
