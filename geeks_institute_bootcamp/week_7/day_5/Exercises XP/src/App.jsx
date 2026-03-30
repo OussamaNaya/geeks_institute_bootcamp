@@ -6,6 +6,7 @@ import './App.css'
 import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ErrorBoundary from './components/ErrorBoundary'
+import PostList from './components/PostList'
 
 const Home = () => {
   return(
@@ -21,6 +22,7 @@ const Profile = () => {
 const Shop = () => {
   return <>{undefinedVariable}</>;
 }
+
 
 function App() {
   return (
@@ -60,6 +62,9 @@ function App() {
           } 
         />
       </Routes>
+
+      <hr />
+      <PostList />
     </>
   );
 }
