@@ -1,0 +1,91 @@
+SQL Puzzle – Answers
+
+---
+
+Q1:
+SELECT COUNT(*)
+FROM FirstTab AS ft
+WHERE ft.id NOT IN (SELECT id FROM SecondTab WHERE id IS NULL)
+
+Subquery result = (NULL)
+
+Condition becomes:
+ft.id NOT IN (NULL)
+
+Any comparison with NULL → UNKNOWN → always FALSE
+
+OUTPUT:
+0
+
+---
+
+Q2:
+SELECT COUNT(*)
+FROM FirstTab AS ft
+WHERE ft.id NOT IN (SELECT id FROM SecondTab WHERE id = 5)
+
+Subquery result = (5)
+
+Condition:
+ft.id NOT IN (5)
+
+Values in FirstTab.id:
+5 → excluded
+6 → included
+7 → included
+NULL → ignored (NULL comparison)
+
+OUTPUT:
+2
+
+---
+
+Q3:
+SELECT COUNT(*)
+FROM FirstTab AS ft
+WHERE ft.id NOT IN (SELECT id FROM SecondTab)
+
+Subquery result = (5, NULL)
+
+Condition:
+ft.id NOT IN (5, NULL)
+
+Because of NULL → comparison becomes UNKNOWN → always FALSE
+
+OUTPUT:
+0
+
+---
+
+Q4:
+SELECT COUNT(*)
+FROM FirstTab AS ft
+WHERE ft.id NOT IN (SELECT id FROM SecondTab WHERE id IS NOT NULL)
+
+Subquery result = (5)
+
+Same as Q2
+
+Valid values:
+6, 7
+
+OUTPUT:
+2
+
+---
+
+FINAL ANSWERS SUMMARY:
+
+Q1 → 0
+Q2 → 2
+Q3 → 0
+Q4 → 2
+
+---
+
+Important Concept:
+
+* NOT IN + NULL = DANGER ⚠️
+* If NULL exists in subquery → result becomes EMPTY
+* Always filter NULL using:
+  WHERE column IS NOT NULL
