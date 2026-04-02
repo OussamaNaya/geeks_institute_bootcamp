@@ -1,0 +1,62 @@
+1. Get a list of all the languages
+--------------------------------------------------
+SELECT * FROM language;
+
+
+2. Get all films with their languages
+--------------------------------------------------
+SELECT f.title, f.description, l.name AS language
+FROM film f
+INNER JOIN language l ON f.language_id = l.language_id;
+
+
+3. Get all languages, even those without films
+--------------------------------------------------
+SELECT f.title, f.description, l.name AS language
+FROM language l
+LEFT JOIN film f ON f.language_id = l.language_id;
+
+
+4. Create table new_film and insert data
+--------------------------------------------------
+CREATE TABLE new_film (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255)
+);
+
+INSERT INTO new_film (name) VALUES
+('Inception'),
+('Interstellar'),
+('The Matrix');
+
+
+5. Create table customer_review
+--------------------------------------------------
+CREATE TABLE customer_review (
+    review_id SERIAL PRIMARY KEY,
+    film_id INT REFERENCES new_film(id) ON DELETE CASCADE,
+    language_id INT REFERENCES language(language_id),
+    title VARCHAR(255),
+    score INT CHECK (score BETWEEN 1 AND 10),
+    review_text TEXT,
+    last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+6. Add 2 movie reviews
+--------------------------------------------------
+INSERT INTO customer_review (film_id, language_id, title, score, review_text)
+VALUES
+(1, 1, 'Amazing Movie', 9, 'Great story and visuals'),
+(2, 1, 'Mind Blowing', 10, 'One of the best movies ever');
+
+
+7. Delete a film that has a review
+--------------------------------------------------
+DELETE FROM new_film WHERE id = 1;
+
+
+8. What happens to customer_review?
+--------------------------------------------------
+Because of "ON DELETE CASCADE", when a film is deleted from new_film,
+all related reviews in customer_review are automatically deleted.
